@@ -1,0 +1,44 @@
+﻿.funkytextbox
+{
+    border: 3px solid green;
+}
+
+
+.ui-autocomplete { position: absolute; cursor: default; }      
+
+ul.ui-autocomplete 
+{
+    background: #FFF;
+    border: 1px solid #000;
+    list-style-type: none;
+}
+ul.ui-autocomplete .ui-menu-item
+{
+    border: 1px dashed #c0c0c0;
+}
+a.ui-state-focus
+{
+    border: 2px solid red;
+}
+
+
+
+
+/* <ul id="ui-id-1" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" tabindex="0" style="z-index: 1; display: none; top: 29px; left: 44px; width: 153px;">
+<li class="ui-menu-item" role="presentation">
+<li class="ui-menu-item" role="presentation">
+</ul>
+
+<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all">
+  <li class="ui-menu-item">
+    <a class="ui-corner-all">item 1</a>
+  </li>
+  <li class="ui-menu-item">
+    <a class="ui-corner-all">item 2</a>
+  </li>
+  <li class="ui-menu-item">
+    <a class="ui-corner-all">item 3</a>
+  </li>
+</ul>
+
+*/

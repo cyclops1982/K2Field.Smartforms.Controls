@@ -1,0 +1,5 @@
+﻿<Properties>
+  <Prop ID="IsEnabled" friendlyname="Is enabled" type="bool" category="Detail" refreshdisplay="true">
+    <Value>true</Value>
+  </Prop>
+</Properties>
