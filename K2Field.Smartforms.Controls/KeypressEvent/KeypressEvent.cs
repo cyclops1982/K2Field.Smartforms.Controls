@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SourceCode.Forms.Controls.Web.Shared;
 using System.Web.UI.WebControls;
+using K2Field.Smartforms.Controls.InternalControls;
 
 namespace K2Field.Smartforms.Controls.KeypressEvent
 {

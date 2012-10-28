@@ -10,12 +10,10 @@ using SourceCode.Forms.Controls.Web.Shared;
 
 namespace K2Field.Smartforms.Controls.KeypressEvent
 {
-
     [ClientScriptResource("K2Field.Smartforms.Controls.KeypressEvent.KeypressEventBehavior", "K2Field.Smartforms.Controls.KeypressEvent.KeypressEventBehavior.js")]
     [TargetControlType(typeof(System.Web.UI.WebControls.HiddenField))]
     public class KeyPressEventExtender : ExtenderControlBase
     {
-
         [ExtenderControlProperty]
         [ClientPropertyName("_isEnabled")]
         public bool IsEnabled

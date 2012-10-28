@@ -35,6 +35,7 @@ namespace K2Field.SmartForms.Controls
                 //        Console.WriteLine("cType.fullname: {0}", cType.FullName);
                 //    }
                 //}
+                //return;
 
                 Assembly controlAssembly = Assembly.Load("K2Field.Smartforms.Controls");
                 Type[] types = controlAssembly.GetTypes();
@@ -68,7 +69,7 @@ namespace K2Field.SmartForms.Controls
                         controlType.FullName = t.FullName + ", " + controlAssembly.FullName;
                         controlType.DisplayName = friendlyName;
                         controlType.Category = ControlTypeCategory.Input;
-                        controlType.Group = "Custom Controls"; //TODO: erhhhhhhhhhh?
+                        controlType.Group = "Custom Controls"; //TODO: erhhhhhhhhhh - why do they not group together. And can we make this configurable. Maybe create one attribute that holds name and properties?
 
                         
                         // DataTypes
@@ -110,8 +111,12 @@ namespace K2Field.SmartForms.Controls
 
 
                         // Specify runtime functions and validation. I really have no clue what these are for and why we do this, but it was in the how-to-guide
-                        controlType.GetValueMethod = "UtilitiesBehaviour.getSimpleValue";
-                        controlType.SetValueMethod = "UtilitiesBehaviour.setSimpleValue";
+                        //TODO: Change to argument/attribute
+                        controlType.GetValueMethod = "UtilitiesBehaviour.getValue";
+                        controlType.SetValueMethod = "UtilitiesBehaviour.setValue";
+                        controlType.SetPropertyMethod = "UtilitiesBehaviour.setControlPropertyOrStyle";
+                        controlType.GetPropertyMethod = "UtilitiesBehaviour.getControlProperty";
+                        controlType.GetDefaultValueMethod = "UtilitiesBehaviour.getDefaultValue";
                         controlType.ValidationMethod = "UtilitiesBehaviour.validateControl";
 
                         if (updateControl)

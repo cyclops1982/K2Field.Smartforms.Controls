@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
+using SourceCode.Forms.Controls.Web.Shared;
 
 namespace K2Field.Smartforms.Controls.InternalControls
 {
-
-    public class InternalTextbox : TextBox
+    /// <summary>
+    /// This control is called a internalLiteral. Unfortunatly, extending from Literal does not work. I think this is because a literal might not have an ID (idea...)
+    /// IMHO that means a literal has no clue :-)
+    /// and the label DOES work. Just set the text to some lame HTML.
+    /// </summary>
+    public class InternalLiteral : Label
     {
         #region Private Variables
         private string _controlID = "";

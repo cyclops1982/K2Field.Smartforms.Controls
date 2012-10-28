@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
 
-namespace K2Field.Smartforms.Controls
+namespace K2Field.Smartforms.Controls.InternalControls
 {
 
     public class InternalHiddenField : HiddenField

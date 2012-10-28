@@ -55,9 +55,12 @@
   <ItemGroup>
     <Compile Include="AutocompleteTextbox\AutocompleteTextbox.cs" />
     <Compile Include="AutocompleteTextbox\AutocompleteTextboxExtender.cs" />
+    <Compile Include="IFrameControl\IFrameControl.cs" />
+    <Compile Include="IFrameControl\IFrameControlExtender.cs" />
     <Compile Include="InstallHelpers\RegisterDataType.cs" />
     <Compile Include="InstallHelpers\RegisterEvent.cs" />
     <Compile Include="InstallHelpers\RegisterPropertiesXml.cs" />
+    <Compile Include="InternalControls\InternalLiteral.cs" />
     <Compile Include="InternalControls\InternalTextbox.cs" />
     <Compile Include="InternalControls\InternalHiddenField.cs" />
     <Compile Include="KeypressEvent\KeypressEvent.cs" />
@@ -78,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AutocompleteTextbox\AutocompleteTextboxProperties.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IFrameControl\IFrameControlBehavior.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IFrameControl\IFrameControlProperties.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

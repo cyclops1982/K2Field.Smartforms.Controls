@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SourceCode.Forms.Controls.Web.Shared;
+using K2Field.Smartforms.Controls.InternalControls;
 
 namespace K2Field.Smartforms.Controls.AutocompleteTextbox
 {

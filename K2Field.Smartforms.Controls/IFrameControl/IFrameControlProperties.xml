@@ -1,0 +1,18 @@
+﻿<Properties>
+  <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
+    <Value>true</Value>
+  </Prop>
+  <Prop ID="URL" ValidationPattern="^((mailto\:|(news|(ht|f)tp(s?))\://){1}.+)?$" ValidationMessage="InvalidURL" friendlyname="Url" type="string" category="Detail" refreshdisplay="true" inputlength="255" />
+  <Prop ID="Width"  ValidationPattern="^$|^(100|[0-9]{1,2})%?$|^(3276[0-7]|327[0-5]\d|32[0-6]\d{2}|3[0-1]\d{3}|[1-2]\d{4}|[1-9]\d{0,3}|\d){1}(px)?$" ValidationMessage="InvalidWidth" friendlyname="Width" type="string" category="General" refreshdisplay="true" inputlength="20" setFunction="SetControlWidth" getFunction="GetControlWidth">
+    <Value>400px</Value>
+  </Prop>
+  <Prop ID="Height" ValidationPattern="^$|^(100|[0-9]{1,2})%?$|^(3276[0-7]|327[0-5]\d|32[0-6]\d{2}|3[0-1]\d{3}|[1-2]\d{4}|[1-9]\d{0,3}|\d){1}(px)?$" ValidationMessage="InvalidHeight" friendlyname="Height" type="string" category="General" refreshdisplay="true" inputlength="20" setFunction="SetControlHeight" getFunction="GetControlHeight">
+    <Value>300px</Value>
+  </Prop>
+  <Prop ID="Scrolling" friendlyname="Scrolling" type="drop" category="Detail" SelectionValue="Auto|Yes|No" SelectionText="Auto|Yes|No">
+    <Value>Auto</Value>
+  </Prop>
+  <Prop ID="FrameBorder" friendlyname="Border" type="bool" category="Detail" refreshdisplay="true">
+    <Value>false</Value>
+  </Prop>
+</Properties>
