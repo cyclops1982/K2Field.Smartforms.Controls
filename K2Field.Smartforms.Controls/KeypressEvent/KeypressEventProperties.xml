@@ -1,4 +1,5 @@
 ﻿<Properties>
+  <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
   <Prop ID="IsEnabled" friendlyname="Is enabled" type="bool" category="Detail" refreshdisplay="true">
     <Value>true</Value>
   </Prop>

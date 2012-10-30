@@ -1,0 +1,8 @@
+﻿<Properties>
+  <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+  <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
+    <Value>true</Value>
+  </Prop>
+  <Prop ID="HTML" friendlyname="HTML" type="complex"  category="Display"  InitializeServerControl="F2FieldLiteralInit" ClearServerControl="clearComplexPropertyConfig"  ServerControl="K2Field.Smartforms.Controls.HTMLControl.HTMLControlPropertyConfiguration,K2Field.Smartforms.Controls,Version=1.0.0.0,Culture=neutral,PublicKeyToken=7a17aad17a2cb86c" >  
+  </Prop>
+</Properties>
