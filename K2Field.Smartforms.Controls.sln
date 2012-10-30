@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K2Field.Smartforms.Controls
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K2Field.Smartforms.Controls.Installer", "K2Field.Smartforms.Controls.Installer\K2Field.Smartforms.Controls.Installer.csproj", "{D05F1429-AEFE-4989-9EDC-E2E43202A7ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4957468F-A2C3-447B-9427-F3BEB9FC5C40}"
+	ProjectSection(SolutionItems) = preProject
+		key.snk = key.snk
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
