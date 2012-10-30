@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="SourceCode.Forms.Controls.Web.Shared, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program Files (x86)\K2 blackpearl\K2 SmartForms Designer\bin\SourceCode.Forms.Controls.Web.Shared.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\K2 blackpearl\K2 SmartForms Designer\bin\SourceCode.Forms.Controls.Web.Shared.dll</HintPath>
     </Reference>
     <Reference Include="SourceCode.Forms.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL" />
     <Reference Include="SourceCode.Forms.Web.Controls, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
@@ -57,9 +57,9 @@
     <Compile Include="AutocompleteTextbox\AutocompleteTextboxExtender.cs" />
     <Compile Include="IFrameControl\IFrameControl.cs" />
     <Compile Include="IFrameControl\IFrameControlExtender.cs" />
+    <Compile Include="InstallHelpers\RegisterControlType.cs" />
     <Compile Include="InstallHelpers\RegisterDataType.cs" />
     <Compile Include="InstallHelpers\RegisterEvent.cs" />
-    <Compile Include="InstallHelpers\RegisterPropertiesXml.cs" />
     <Compile Include="InternalControls\InternalLiteral.cs" />
     <Compile Include="InternalControls\InternalTextbox.cs" />
     <Compile Include="InternalControls\InternalHiddenField.cs" />

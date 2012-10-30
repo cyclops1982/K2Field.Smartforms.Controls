@@ -8,7 +8,7 @@ using K2Field.Smartforms.Controls.InternalControls;
 namespace K2Field.Smartforms.Controls.AutocompleteTextbox
 {
     [InstallHelpers.RegisterDataType(SourceCode.Forms.Management.ControlDataType.Text)]
-    [InstallHelpers.RegisterPropertiesXml("K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextboxProperties.xml")]
+    [InstallHelpers.RegisterControlType("Autocomplete Text Box", PropertyXMLResourceName = "K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextboxProperties.xml")]
     public class AutocompleteTextbox : BaseControl
     {
 

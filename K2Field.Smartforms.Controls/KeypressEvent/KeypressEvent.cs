@@ -10,12 +10,11 @@ namespace K2Field.Smartforms.Controls.KeypressEvent
 {
 
     [InstallHelpers.RegisterEvent("Keypressed", true)]
+    [InstallHelpers.RegisterControlType("Keypress Event")]
     public class KeypressEvent : BaseControl
     {
         public KeypressEvent()
         {
-            Name = "KeyPressEvent";
-            FriendlyName = "KeyPress Event";
             IsEnabled = true;
         }
 

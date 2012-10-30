@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace K2Field.Smartforms.Controls.IFrameControl
 {
-    [InstallHelpers.RegisterPropertiesXml("K2Field.Smartforms.Controls.IFrameControl.IFrameControlProperties.xml")]
+    [InstallHelpers.RegisterControlType("IFrame Control", PropertyXMLResourceName = "K2Field.Smartforms.Controls.IFrameControl.IFrameControlProperties.xml")]
     public class IFrameControl : BaseControl
     {
 
