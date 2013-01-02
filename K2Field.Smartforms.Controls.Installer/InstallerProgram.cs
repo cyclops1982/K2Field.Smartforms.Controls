@@ -97,6 +97,8 @@ namespace K2Field.SmartForms.Controls
                         if (!string.IsNullOrEmpty(regContType.ValidationMethod))
                             controlType.ValidationMethod = regContType.ValidationMethod;
 
+                        if (!string.IsNullOrEmpty(regContType.SetItemsMethod))
+                            controlType.SetItemsMethod = regContType.SetItemsMethod;
 
 
                         // DataTypes

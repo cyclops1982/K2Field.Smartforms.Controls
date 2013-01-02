@@ -18,70 +18,149 @@ if (typeof K2Field.Smartforms.Controls.AutocompleteTextbox === "undefined" || K2
 
 K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox = function (element) {
     K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.initializeBase(this, [element]);
+    this._options = [];
     this._isEnabled = true;
+    this._isVisible = true;
+    this._isReadOnly = false;
+    this._dataSourceType = ""; // "Static", "SmartObject"
+    this._fixedListItems = ""; // &lt;Items&gt;&lt;Item&gt;1&lt;/Item&gt;&lt;Item&gt;2&lt;/Item&gt;&lt;Item&gt;3&lt;/Item&gt;&lt;Item&gt;4&lt;/Item&gt;&lt;Item&gt;5&lt;/Item&gt;&lt;/Items&gt;
+    this._displaytemplate = null; // What fields to display from the SMO: 
+    // &lt;Template&gt;&lt;Item SourceType="ObjectProperty" SourceID="CountryId" DataType="Text"/&gt;&lt;Item SourceType="ObjectProperty" SourceID="NAme" DataType="Text"/&gt;&lt;/Template&gt;
+    this._valueproperty = null; // value property 'Id'
+    this._associationSO = null; // Guid of an SO? 11817d76-c1a0-4ee4-bff4-74fdb0f511da
+    this._associationMethod = ""; // method selected "GetList"
+    this._initialized = false;
 }
+
 
 
 K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = {
     initialize: function () {
         K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.callBaseMethod(this, 'initialize');
-        $.ajaxSetup({
-            // Disable caching of AJAX responses
-            cache: false
-        });
+        if (this._dataSourceType == "Static") {
+            this.setItems();
+        }
 
-        // Overrides the default autocomplete filter function to search only from the beginning of the string
-        $.ui.autocomplete.filter = function (array, term) {
-            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
-            return $.grep(array, function (value) {
-                return matcher.test(value.label || value.value || value);
-            });
-        };
-
-
-        // Caching idea + code from http://developwithstyle.com/articles/2010/05/14/jquery-ui-autocomplete-is-it-any-good/
-        var countryCache = {};
-        jQuery(this.get_element()).autocomplete({
-            source: function (request, response) {
-                if (countryCache.term == request.term && countryCache.content) {
-                    response(countryCache.content);
-                    return;
-                }
-                if (new RegExp(countryCache.term).test(request.term) && countryCache.content && countryCache.content.length < 13) {
-                    response($.ui.autocomplete.filter(countryCache.content, request.term));
-                    return;
-                }
-
-
-                $.ajax({
-                    url: 'http://k2.denallix.com:8888/SmartObjectServices/rest/Novartis/SmartObjects/Country/GetList?$format=XML',
-                    dataType: 'xml',
-                    type: 'GET',
-                    crossDomain: false,
-                    error: function (data, error, status) {
-                        alert(error);
-                    },
-                    success: function (data) {
-                        var ret = new Array();
-                        var x = $(data).find('Country');
-                        for (var i = 0; i < x.length; i++) {
-                            var name = $(x[i]).find('Name');
-                            ret[i] = name.text();
-                        }
-                        countryCache.term = request.term;
-                        countryCache.content = $.ui.autocomplete.filter(ret, request.term);
-                        response(countryCache.content);
-                    }
-                });
-
-            }
-        });
+        this._initialized = true;
     },
+
+    setItems: function (objInfo) {
+        var thisDropDown = this.get_element();
+        var jqDropDown = jQuery(thisDropDown);
+        var originalValue = thisDropDown.value;
+        var selectedValue = "";
+        var displayNodes;
+        var xmlDoc = null;
+        var useItems = false;
+
+        if (this._dataSourceType == "Static") {
+            xmlDoc = parseXML(this._fixedListItems);
+            displayNodes = xmlDoc.selectNodes("Items/Item");
+            useItems = true;
+        } else {
+            xmlDoc = objInfo.XmlDocument;
+            displayNodes = xmlDoc.selectNodes("collection/object[@parentid='" + this._associationSO + "']");
+        }
+
+        jqDropDown.val('');
+
+        this._options = [];
+        var values = [];
+        var optionDisplay = "";
+        var optionValue = "";
+        var optionSelected = false;
+        /*
+        if (this._allowEmptySelection) {
+        optionSelected = (i == 0 && this._allowEmptySelection == false);
+        var option =
+        {
+        index: optionIndex,
+        text: "",
+        value: "",
+        className: "",
+        selected: optionSelected,
+        disabled: ""
+        }
+        options[optionIndex++] = option;
+        }*/
+
+        for (var i = 0; i < displayNodes.length; i++) {
+            optionSelected = (i == 0 && this._allowEmptySelection == false);
+
+            if (useItems) {
+                optionDisplay = displayNodes[i].text;
+                optionValue = optionDisplay;
+            } else {
+                optionDisplay = UtilitiesHelper.setDisplayTemplateValue(this._displaytemplate, displayNodes[i]);
+                optionValue = displayNodes[i].selectSingleNode("fields/field[@name='" + this._valueproperty + "']/value").text;
+            }
+
+            var option = {
+                index: i,
+                value: optionValue,
+                label: optionDisplay
+            }
+            values[i] = option.label;
+            this._options[i] = option;
+
+            if (optionSelected) {
+                selectedValue = optionValue;
+            }
+        }
+
+        jQuery(this.get_element()).autocomplete({
+            source: values
+        });
+
+
+        thisDropDown.value = selectedValue;
+
+
+        if (originalValue != thisDropDown.value) {
+            raiseEvent(this._id, "Control", "OnChange");
+        }
+
+        if (displayNodes.length == 0) {
+            return false;
+        }
+    },
+
+
+    setValue: function (objInfo) {
+        alert('setvalue called');
+    },
+
+    getValue: function () {
+        var thisDropDown = this.get_element();
+        var jqDropDown = jQuery(thisDropDown);
+        for (var i = 0; i < this._options.length; i++) {
+            if (this._options[i].label == jqDropDown.val()) {
+                return this._options[i].value;
+            }
+        }
+        return 0;
+    },
+
+
+    set_isVisible: function (value) {
+        this._isVisible = value;
+        if (this._initialized) {
+            if (value == false) {
+                jQuery(this.get_element()).hide();
+            } else {
+                jQuery(this.get_element()).show();
+            }
+        }
+    },
+
+    get_isVisible: function () {
+        return this._isVisible;
+    },
+
 
     get_isEnabled: function () {
         return this._isEnabled;
     },
-
     set_isEnabled: function (value) {
         this._isEnabled = value;
         if (this._initialized) {
@@ -92,6 +171,25 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
             }
         }
     },
+
+
+    get_isReadOnly: function () {
+        alert('get isreadonly called');
+        return this._isReadOnly;
+    },
+    set_isReadOnly: function (value) {
+        alert('set isReadOnly called');
+        this._isReadOnly = value;
+        if (this._initialized) {
+            if (value == true) {
+                jQuery(this.get_element()).textbox({}).textbox("readonly");
+            }
+            else {
+                jQuery(this.get_element()).textbox({}).textbox("editable");
+            }
+        }
+    },
+
 
     dispose: function () {
         K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.callBaseMethod(this, 'dispose');

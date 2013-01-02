@@ -1,4 +1,4 @@
-﻿.funkytextbox
+﻿.autocompletetextbox
 {
     border: 3px solid green;
 }
@@ -20,25 +20,3 @@ a.ui-state-focus
 {
     border: 2px solid red;
 }
-
-
-
-
-/* <ul id="ui-id-1" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" tabindex="0" style="z-index: 1; display: none; top: 29px; left: 44px; width: 153px;">
-<li class="ui-menu-item" role="presentation">
-<li class="ui-menu-item" role="presentation">
-</ul>
-
-<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all">
-  <li class="ui-menu-item">
-    <a class="ui-corner-all">item 1</a>
-  </li>
-  <li class="ui-menu-item">
-    <a class="ui-corner-all">item 2</a>
-  </li>
-  <li class="ui-menu-item">
-    <a class="ui-corner-all">item 3</a>
-  </li>
-</ul>
-
-*/

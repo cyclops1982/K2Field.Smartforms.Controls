@@ -1,5 +1,18 @@
 ﻿<Properties>
-  <Prop ID="IsEnabled" friendlyname="Is enabled" type="bool" category="Detail" refreshdisplay="true">
+  <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+  <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
     <Value>true</Value>
   </Prop>
+  <Prop ID="IsEnabled" friendlyname="Enabled" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsEnabled">
+    <Value>true</Value>
+  </Prop>
+  <Prop ID="IsReadOnly" friendlyname="Read-Only" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsReadOnly">
+    <Value>false</Value>
+  </Prop>
+  <Prop ID="DataSourceType" friendlyname="Type" type="complex" serverControlType="property" category="Data Source" InitializeServerControl="initializeAssociationPropertyConfig" ClearServerControl="clearComplexPropertyConfig" ServerControl="SourceCode.Forms.Controls.Web.PropertyConfiguration.AssociationPropertyConfig, SourceCode.Forms.Controls.Web" />
+  <Prop ID="FixedListItems" friendlyname="Items" type="string" serverControlType="property" category="Data Source" ReadOnly="true" />
+  <Prop ID="AssociationSO" friendlyname="SmartObject" type="string" serverControlType="smartobject" category="Data Source" ReadOnly="true" />
+  <Prop ID="AssociationMethod" friendlyname="Method" type="string" serverControlType="listmethod" category="Data Source" ReadOnly="true" />
+  <Prop ID="ValueProperty" friendlyname="Value" type="string" serverControlType="property" category="Data Source" ReadOnly="true" />
+  <Prop ID="DisplayTemplate" friendlyname="Display" type="string" serverControlType="property" category="Data Source" ReadOnly="true" />
 </Properties>

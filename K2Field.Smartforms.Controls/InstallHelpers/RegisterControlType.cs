@@ -20,6 +20,7 @@ namespace K2Field.Smartforms.Controls.InstallHelpers
         public string GetDefaultValueMethod {get;set;}
         public string ValidationMethod {get;set;}
         public string PropertyXMLResourceName { get; set; }
+        public string SetItemsMethod { get; set; }
 
 
         public RegisterControlType(string displayName)
@@ -34,6 +35,7 @@ namespace K2Field.Smartforms.Controls.InstallHelpers
             this.GetDefaultValueMethod = "UtilitiesBehaviour.getDefaultValue";
             this.ValidationMethod = "UtilitiesBehaviour.validateControl";
             this.PropertyXMLResourceName = string.Empty;
+            this.SetItemsMethod = string.Empty;
         }
 
         public string GetPropertyXML()
