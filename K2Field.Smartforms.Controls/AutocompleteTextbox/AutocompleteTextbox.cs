@@ -18,7 +18,7 @@ namespace K2Field.Smartforms.Controls.AutocompleteTextbox
     public class AutocompleteTextbox : BaseControl
     {
         #region Private Variables
-        private bool _isVisible;
+        private bool _isVisible = true;
         private string _dataSourceType = "";
         private string _fixedListItems = "";
         private string _displaytemplate = null;
