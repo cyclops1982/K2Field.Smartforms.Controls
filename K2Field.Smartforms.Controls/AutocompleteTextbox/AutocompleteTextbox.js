@@ -127,7 +127,18 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
 
 
     setValue: function (objInfo) {
-        alert('setvalue called');
+        var thisDropDown = this.get_element();
+        var jqDropDown = jQuery(thisDropDown);
+        var found = false;
+        for (var i = 0; i < this._options.length; i++) {
+            if (this._options[i].value == objInfo.Value) {
+                found = true;
+                thisDropDown.value = objInfo.Value;
+            }
+        }
+        if (!found) {
+            alert('Item loaded which is not in the dropdown list.');
+        }
     },
 
     getValue: function () {
