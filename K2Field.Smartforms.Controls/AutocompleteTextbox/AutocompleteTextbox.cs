@@ -5,20 +5,22 @@ using System.Text;
 using SourceCode.Forms.Controls.Web.Shared;
 using K2Field.Smartforms.Controls.InternalControls;
 using System.Configuration;
+using SourceCode.Forms.Web.Controls.Input;
 
 namespace K2Field.Smartforms.Controls.AutocompleteTextbox
 {
     [InstallHelpers.RegisterDataType(SourceCode.Forms.Management.ControlDataType.Text)]
-    [InstallHelpers.RegisterControlType("Autocomplete Text Box", 
+    [InstallHelpers.RegisterControlType("Autocomplete Text Box",
         PropertyXMLResourceName = "K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextboxProperties.xml",
-        SetValueMethod = "UtilitiesBehaviour.setListValue", GetValueMethod = "UtilitiesBehaviour.getValue", 
-        SetItemsMethod="UtilitiesBehaviour.setListItems", 
-        GetPropertyMethod = "UtilitiesBehaviour.getControlProperty", SetPropertyMethod = "UtilitiesBehaviour.setControlPropertyOrStyle", 
+        SetValueMethod = "UtilitiesBehaviour.setListValue", GetValueMethod = "UtilitiesBehaviour.getValue",
+        SetItemsMethod = "UtilitiesBehaviour.setListItems",
+        GetPropertyMethod = "UtilitiesBehaviour.getControlProperty", SetPropertyMethod = "UtilitiesBehaviour.setControlPropertyOrStyle",
         Category = SourceCode.Forms.Management.ControlTypeCategory.Listing)]
     public class AutocompleteTextbox : BaseControl
     {
         #region Private Variables
         private bool _isVisible = true;
+        private string _value = "";
         private string _dataSourceType = "";
         private string _fixedListItems = "";
         private string _displaytemplate = null;
@@ -32,7 +34,6 @@ namespace K2Field.Smartforms.Controls.AutocompleteTextbox
         {
             Name = "AutocompleteTextbox";
             FriendlyName = "Autocomplete Text Box";
-            //this.CodePaths.Add("AutoCompleteBehavior", "K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.js");
         }
         #endregion Constructor
 
@@ -80,24 +81,31 @@ namespace K2Field.Smartforms.Controls.AutocompleteTextbox
             get { return this._associationMethod; }
             set { this._associationMethod = value; }
         }
+
+        public string Value
+        {
+            get { return this._value; }
+            set { this._value = value; }
+        }
         #endregion Properties
 
 
-        private InternalTextbox CreateTextBox()
+        private Textbox CreateTextBox()
         {
-            InternalTextbox tb = new InternalTextbox();
+            Textbox tb = new Textbox();
             tb.ID = this.ControlID + "_textbox";
-            tb.TextMode = System.Web.UI.WebControls.TextBoxMode.SingleLine;
             tb.CssClass = "autocompletetextbox";
             tb.Visible = this.IsVisible;
             tb.Enabled = this.IsEnabled;
             tb.ReadOnly = this.IsReadOnly;
+            tb.Value = this._value; 
             return tb;
         }
 
         protected override void CreateChildControls()
         {
             this.Controls.Add(CreateTextBox());
+
             AutocompleteTextboxExtender ext = new AutocompleteTextboxExtender();
             ext.TargetControlID = this.ControlID + "_textbox";
             ext.ControlID = this.ControlID;
@@ -109,6 +117,8 @@ namespace K2Field.Smartforms.Controls.AutocompleteTextbox
             ext.AssociationSO = AssociationSO;
             ext.AssociationMethod = AssociationMethod;
             this.Controls.Add(ext);
+
+            
 
             base.CreateChildControls();
         }
@@ -123,17 +133,8 @@ namespace K2Field.Smartforms.Controls.AutocompleteTextbox
             base.RenderControl(writer);
             if (State == ControlState.Designtime || State == ControlState.Preview)
             {
-                InternalTextbox tb = CreateTextBox();
-                if (!tb.Visible)
-                {
-                    InternalLiteral l = new InternalLiteral();
-                    l.Text = "Invisible autocomplete textbox";
-                    l.RenderControl(writer);
-                }
-                else
-                {
-                    tb.RenderControl(writer);
-                }
+                Textbox tb = CreateTextBox();
+                tb.RenderControl(writer);
             }
         }
     }
