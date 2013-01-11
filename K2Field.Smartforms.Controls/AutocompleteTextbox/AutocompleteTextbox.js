@@ -133,11 +133,12 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
         for (var i = 0; i < this._options.length; i++) {
             if (this._options[i].value == objInfo.Value) {
                 found = true;
-                thisDropDown.value = objInfo.Value;
+                alert(this._options[i].label + " - " + this._options[i].value);
+                thisDropDown.value = this._options[i].label;
             }
         }
         if (!found) {
-            alert('Item loaded which is not in the dropdown list.');
+            thisDropDown.value = objInfo.Value;
         }
     },
 
@@ -185,11 +186,9 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
 
 
     get_isReadOnly: function () {
-        alert('get isreadonly called');
         return this._isReadOnly;
     },
     set_isReadOnly: function (value) {
-        alert('set isReadOnly called');
         this._isReadOnly = value;
         if (this._initialized) {
             if (value == true) {
