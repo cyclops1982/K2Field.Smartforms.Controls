@@ -7,12 +7,27 @@ using System.Web.UI;
 
 
 [assembly: WebResource("K2Field.Smartforms.Controls.SilverlightControl.SilverlightControlBehavior.js", "text/javascript", PerformSubstitution = true)]
+[assembly: WebResource("K2Field.Smartforms.Controls.SilverlightControl.SilverlightUpload.xap",  "application/x-silverlight-2")]
 namespace K2Field.Smartforms.Controls.SilverlightControl
 {
     [ClientScriptResource("K2Field.Smartforms.Controls.SilverlightControl.SilverlightControlBehavior", "K2Field.Smartforms.Controls.SilverlightControl.SilverlightControlBehavior.js")]
-    [TargetControlType(typeof(System.Web.UI.WebControls.TextBox))]
+    [TargetControlType(typeof(InternalControls.InternalPanel))]
     public class SilverlightControlExtender : ExtenderControlBase
     {
+        [ExtenderControlProperty]
+        public string CallbackID
+        {
+            get
+            {
+                return base.GetPropertyValue<string>("CallbackID", string.Empty);
+            }
+            set
+            {
+                base.SetPropertyValue<string>("CallbackID", value);
+            }
+        }
+
+
         [ClientPropertyName("_isVisible")]
         [ExtenderControlProperty]
         public bool IsVisible

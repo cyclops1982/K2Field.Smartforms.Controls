@@ -3,5 +3,4 @@
   <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
     <Value>true</Value>
   </Prop>
-  <Prop ID="Text" friendlyname="Text" type="string" category="Detail" refreshdisplay="true" inputlength="255" />
 </Properties>
