@@ -43,15 +43,83 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
 
         this._initialized = true;
     },
+    loadList: function (that, objInfo) {
+        var thisDropDown = that.get_element();
+        var jqDropDown = jQuery(thisDropDown);
+        var originalValue = thisDropDown.value;
+        var selectedValue = "";
+        var displayNodes = [];
+        var xmlDoc;
+        var useItems = false;
+
+        if (that._dataSourceType == "Static") {
+            xmlDoc = parseXML(that._fixedListItems);
+            displayNodes = xmlDoc.selectNodes("Items/Item");
+            useItems = true;
+        } else {
+            xmlDoc = objInfo.XmlDocument;
+            displayNodes = xmlDoc.selectNodes("collection/object[@parentid='" + that._associationSO + "']");
+        }
+
+        jqDropDown.val('');
+
+        that._options = [];
+        var values = [];
+        var optionDisplay = "";
+        var optionValue = "";
+        var optionSelected = false;
+        for (var i = 0; i < displayNodes.length; i++) {
+            optionSelected = (i == 0 && that._allowEmptySelection == false);
+
+            if (useItems) {
+                optionDisplay = displayNodes[i].text;
+                optionValue = optionDisplay;
+            } else {
+                optionDisplay = UtilitiesHelper.setDisplayTemplateValue(that._displaytemplate, displayNodes[i]);
+                optionValue = displayNodes[i].selectSingleNode("fields/field[@name='" + that._valueproperty + "']/value").text;
+            }
+
+            var option = {
+                index: i,
+                value: optionValue,
+                label: optionDisplay
+            }
+            values[i] = option.label;
+            that._options[i] = option;
+
+            if (optionSelected) {
+                selectedValue = optionValue;
+            }
+        }
+        jQuery(that.get_element()).autocomplete({
+            source: values
+        });
+
+        thisDropDown.value = selectedValue;
+
+
+        if (originalValue != thisDropDown.value) {
+            raiseEvent(that._id, "Control", "OnChange");
+        }
+        if (displayNodes.length == 0) {
+            return false;
+        }
+
+    },
 
     setItems: function (objInfo) {
+
         var thisDropDown = this.get_element();
         var jqDropDown = jQuery(thisDropDown);
         var originalValue = thisDropDown.value;
         var selectedValue = "";
         var displayNodes;
-        var xmlDoc = null;
+        var xmlDoc;
         var useItems = false;
+
+        setTimeout(this.loadList(this, objInfo), 100);
+
+        return;
 
         if (this._dataSourceType == "Static") {
             xmlDoc = parseXML(this._fixedListItems);
@@ -83,6 +151,7 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
         }
         options[optionIndex++] = option;
         }*/
+        start = new Date().getTime();
 
         for (var i = 0; i < displayNodes.length; i++) {
             optionSelected = (i == 0 && this._allowEmptySelection == false);
@@ -107,10 +176,18 @@ K2Field.Smartforms.Controls.AutocompleteTextbox.AutocompleteTextbox.prototype = 
                 selectedValue = optionValue;
             }
         }
+        end = new Date().getTime();
+        time = end - start;
+        alert('The Loop: ' + time);
 
+        start = new Date().getTime();
         jQuery(this.get_element()).autocomplete({
             source: values
         });
+        end = new Date().getTime();
+        time = end - start;
+        alert('Jquery Autocomplete bind: ' + time);
+
 
 
         thisDropDown.value = selectedValue;

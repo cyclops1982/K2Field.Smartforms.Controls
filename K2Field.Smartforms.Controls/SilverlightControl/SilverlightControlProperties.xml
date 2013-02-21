@@ -1,0 +1,7 @@
+﻿<Properties>
+  <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+  <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
+    <Value>true</Value>
+  </Prop>
+  <Prop ID="Text" friendlyname="Text" type="string" category="Detail" refreshdisplay="true" inputlength="255" />
+</Properties>
