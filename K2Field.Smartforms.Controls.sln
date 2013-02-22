@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightUpload", "SilverlightUpload\SilverlightUpload.csproj", "{A11F5984-A111-4475-B6A0-2710E0A1F242}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{D05F1429-AEFE-4989-9EDC-E2E43202A7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D05F1429-AEFE-4989-9EDC-E2E43202A7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D05F1429-AEFE-4989-9EDC-E2E43202A7ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11F5984-A111-4475-B6A0-2710E0A1F242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11F5984-A111-4475-B6A0-2710E0A1F242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11F5984-A111-4475-B6A0-2710E0A1F242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11F5984-A111-4475-B6A0-2710E0A1F242}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
