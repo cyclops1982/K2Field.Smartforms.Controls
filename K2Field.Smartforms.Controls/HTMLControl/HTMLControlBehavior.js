@@ -18,6 +18,22 @@ K2Field.Smartforms.Controls.HTMLControl.HTMLControlBehavior.prototype = {
         K2Field.Smartforms.Controls.HTMLControl.HTMLControlBehavior.callBaseMethod(this, 'initialize');
     },
 
+
+    setValue: function (objInfo) {
+        alert('setvalue');
+        var frameName = "#" + objInfo.CurrentControlId + "_html";
+        var frame = jQuery(frameName);
+        $(frame).attr('src', objInfo.Value);
+    },
+
+    getValue: function () {
+        alert('getvalue');
+        return 'Myvalue';
+        var frameName = "#" + objInfo.CurrentControlId + "_internalframe";
+        var frame = jQuery(frameName);
+        return $(frame).attr('src');
+    },
+
     set_isVisible: function (value) {
         this._isVisible = value;
         if (this._initialized) {

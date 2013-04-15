@@ -10,7 +10,7 @@ function F2FieldLiteralInit(propertyXml, fullXml, controlDefinitionXml, controlT
 
     waterXmlValue = parseXML(propertyXml);
     //pull out value to rendered control
-    var value = waterXmlValue.selectSingleNode('Controls/Control/Properties/Property[Name="Text"]/Value')
+    var value = waterXmlValue.selectSingleNode('Controls/Control/Properties/Property[Name="HTML"]/Value')
     if (checkExists(value))
         jQuery("#HTMLControlPropertyConfiguration textarea").val(value.text);
     //show popup
@@ -28,7 +28,7 @@ function F2FieldLiteralInit(propertyXml, fullXml, controlDefinitionXml, controlT
             }
         ],
         closeWith: 'HtmlPropBtnCancel',
-        headerText: "HTML", //"PropertyName"
+        headerText: "HTML",
         draggable: true,
         content: jQuery('#HTMLControlPropertyConfiguration'),
         width: 600,
@@ -38,12 +38,12 @@ function F2FieldLiteralInit(propertyXml, fullXml, controlDefinitionXml, controlT
 
 function F2FieldLiteralReturned() {
     //begin save value from control
-    var node = waterXmlValue.selectSingleNode('Controls/Control/Properties/Property[Name="Text"]');
+    var node = waterXmlValue.selectSingleNode('Controls/Control/Properties/Property[Name="HTML"]');
 
     if (!checkExists(node)) {
         node = waterXmlValue.createElement("Property");
         var name = waterXmlValue.createElement("Name");
-        name.appendChild(waterXmlValue.createTextNode("Text"));
+        name.appendChild(waterXmlValue.createTextNode("HTML"));
         node.appendChild(name);
         var properties = waterXmlValue.selectSingleNode("Controls/Control/Properties");
         properties.appendChild(node);

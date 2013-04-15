@@ -26,13 +26,20 @@ namespace K2Field.SmartForms.Controls
                 ControlTypeExplorer explorer = manager.GetControlTypes();
                 
                 //REMOVE ALL CONTROL TYPES THAT ARE NOT IN THE SOURCECODE NAMESPACE! 
-                //foreach (ControlTypeInfo cType in explorer.ControlTypes)
+                //foreach (ControlTypeInfo ctype in explorer.ControlTypes)
                 //{
 
-                //    if (!cType.FullName.StartsWith("SourceCode"))
+                //    if (!ctype.FullName.StartsWith("SourceCode"))
                 //    {
-                //        manager.DeleteControlType(cType.Name);
-                //        Console.WriteLine("cType.fullname: {0}", cType.FullName);
+                //        try
+                //        {
+                //            manager.DeleteControlType(ctype.Name);
+                //            Console.WriteLine("Removed {0}", ctype.FullName);
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //            Console.WriteLine("{0} not removed. In use? Exception: {1}", ctype.FullName, ex.Message);
+                //        }
                 //    }
                 //}
                 //return;

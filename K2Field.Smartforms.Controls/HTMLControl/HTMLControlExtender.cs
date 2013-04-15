@@ -11,7 +11,7 @@ namespace K2Field.Smartforms.Controls.HTMLControl
 {
 
     [ClientScriptResource("K2Field.Smartforms.Controls.HTMLControl.HTMLControlBehavior", "K2Field.Smartforms.Controls.HTMLControl.HTMLControlBehavior.js")]
-    [TargetControlType(typeof(System.Web.UI.WebControls.TextBox))]
+    [TargetControlType(typeof(System.Web.UI.WebControls.Label))]
     public class HTMLControlExtender : ExtenderControlBase
     {
         [ClientPropertyName("_isVisible")]
