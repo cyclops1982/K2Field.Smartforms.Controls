@@ -31,9 +31,6 @@ namespace SilverlightUpload
             InitializeComponent();
             AssemblyName assemblyName = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
             version.Text = assemblyName.Version.ToString();
-            BitmapImage bmp = new BitmapImage();
-            bmp.UriSource = new Uri("http://k2.denallix.com/Runtime/Files/K2logo.png");
-            imgThumb.Source = bmp;
         }
 
         public string ObjectID
@@ -108,14 +105,11 @@ namespace SilverlightUpload
         [ScriptableMember(ScriptAlias="loadImageFromUrl")]
         public void LoadImageFromUrl(string url)
         {
-            ///Runtime/Runtime/File.ashx?_path=C:\Program Files (x86)\K2 blackpearl\K2 smartforms Runtime\Files\81ecdf95-c95b-4012-a526-ce77e77629da_K2_background_01g(1400x900).jpg&_controltype=image
-            string lastPart = url.Substring(url.LastIndexOf('\\') + 1);
-            string filename = lastPart.Substring(0, lastPart.IndexOf('&'));
-
+            // See https://connect.microsoft.com/VisualStudio/feedback/details/649543/ as the variable url will contain slashes and others.
+            // Then look here: http://stackoverflow.com/questions/602642/server-urlencode-vs-httputility-urlencode
 
             string fullUrl = App.Current.Host.Source.OriginalString;
-            string imgUrl = fullUrl.Substring(0, fullUrl.IndexOf(App.Current.Host.Source.AbsolutePath)) + "/Runtime/Files/" + filename;
-
+            string imgUrl = Uri.EscapeUriString(fullUrl.Substring(0, fullUrl.IndexOf(App.Current.Host.Source.AbsolutePath)) + url);
 
             BitmapImage bmp = new BitmapImage();
             bmp.ImageFailed += new EventHandler<ExceptionRoutedEventArgs>(bmp_ImageFailed);
@@ -124,6 +118,11 @@ namespace SilverlightUpload
             imgThumb.BindingValidationError += new EventHandler<ValidationErrorEventArgs>(imgThumb_BindingValidationError);
             imgThumb.ImageFailed += new EventHandler<ExceptionRoutedEventArgs>(imgThumb_ImageFailed);
             imgThumb.Source = bmp;
+        }
+
+        void wc1_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            version.Text += "+";
         }
 
         void imgThumb_ImageFailed(object sender, ExceptionRoutedEventArgs e)
