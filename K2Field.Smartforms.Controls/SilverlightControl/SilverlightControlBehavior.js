@@ -54,7 +54,6 @@ K2Field.Smartforms.Controls.SilverlightControl.SilverlightControlBehavior.protot
     },
 
     _finishUploadFile: function (arg, context) {
-        alert('finish file upload');
         context._filePath = arg;
 
         if (!context._fileObject.completedReading()) {
@@ -73,19 +72,19 @@ K2Field.Smartforms.Controls.SilverlightControl.SilverlightControlBehavior.protot
     setFileValue: function (fileObj) {
         this._status = fileObj.status;
         this._filePath = fileObj.path;
+        this._fileName = fileObj.name;
         this._setUploadedFile(fileObj.name);
     },
 
 
     _setUploadedFile: function (fileName) {
-        if (fileName != "") {
-            this._status = "COMPLETE";
-        } else {
-            this._status = "NONE";
+        if (this._status == "COMPLETE" || fileName != "") //Load from a filepath location
+        {
+            var imgpath = openFile(this._filePath, "Path", "image", null);
+            this._fileObject = this.getScriptableSilverlightObject();
+            this._fileObject.loadImageFromUrl(imgpath);
         }
     },
-
-
 
     getScriptableSilverlightObject: function () {
         var obj = jQuery('#' + this._id + "_SilverlightControl")[0];
