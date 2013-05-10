@@ -1,0 +1,5 @@
+﻿<Properties>
+  <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+  <Prop ID="SessionVariableName" friendlyname="Session variable name" type="string" category="Detail" refreshdisplay="true" />
+  <Prop ID="SessionVariableValue" friendlyname="Session variable value" type="string" category="Detail" refreshdisplay="true" />
+</Properties>

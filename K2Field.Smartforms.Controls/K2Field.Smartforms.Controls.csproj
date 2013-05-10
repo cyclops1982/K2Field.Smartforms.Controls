@@ -77,6 +77,8 @@
     <Compile Include="KeypressEvent\KeypressEvent.cs" />
     <Compile Include="KeypressEvent\KeypressEventExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionControl\SessionControl.cs" />
+    <Compile Include="SessionControl\SessionControlExtender.cs" />
     <Compile Include="SilverlightControl\FileUploadEventArgs.cs" />
     <Compile Include="SilverlightControl\SilverlightControl.cs" />
     <Compile Include="SilverlightControl\SilverlightControlExtender.cs" />
@@ -118,10 +120,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SilverlightControl\SilverlightControlBehavior.js" />
-    <EmbeddedResource Include="SilverlightControl\SilverlightControlProperties.xml" />
+    <EmbeddedResource Include="SilverlightControl\SilverlightControlProperties.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SilverlightControl\SilverlightUpload.xap" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SessionControl\SessionControlBehavior.js" />
+    <EmbeddedResource Include="SessionControl\SessionControlProperties.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
