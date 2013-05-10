@@ -29,15 +29,11 @@ K2Field.Smartforms.Controls.SessionControl.SessionControlBehavior.prototype = {
         K2Field.Smartforms.Controls.SessionControl.SessionControlBehavior.callBaseMethod(this, 'initialize');
     },
 
-
-
     setValue: function (objInfo) {
-        alert('setValue ' + objInfo.Value);
         this._sessionvariablevalue = objInfo.Value;
     },
 
     getValue: function () {
-        alert('getvalue ' + this._sessionvariablevalue);
         return this._sessionvariablevalue;
     },
 

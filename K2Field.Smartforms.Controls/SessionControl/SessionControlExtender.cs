@@ -21,10 +21,7 @@ namespace K2Field.Smartforms.Controls.SessionControl
         {
 
 
-            get  {
-                return base.GetPropertyStringValue("SessionVariableName");
-        } 
-        //    get { return base.GetPropertyValue<string>("SessionVariableName", ""); }
+            get { return base.GetPropertyValue<string>("SessionVariableName", ""); }
             set { base.SetPropertyValue<string>("SessionVariableName", value); }
         }
 

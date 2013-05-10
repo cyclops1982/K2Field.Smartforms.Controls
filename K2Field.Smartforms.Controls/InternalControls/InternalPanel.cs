@@ -9,7 +9,6 @@ namespace K2Field.Smartforms.Controls.InternalControls
     public class InternalPanel : Panel
     {
         private string _controlID = "";
-        private string _sessionVariableValue;
         public string ControlID
         {
             get
@@ -37,10 +36,5 @@ namespace K2Field.Smartforms.Controls.InternalControls
             }
         }
 
-        public string SessionVariableValue
-        {
-            get { return this._sessionVariableValue; }
-            set { this._sessionVariableValue = value; }
-        }
     }
 }
