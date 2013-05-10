@@ -33,26 +33,21 @@ namespace K2Field.Smartforms.Controls.SilverlightControl
             {
                 throw new ArgumentNullException("args");
             }
-            string[] array = args.Split(';');
-            for (int i = 0; i < array.Length; i++)
+            string[] chunks = args.Split(';');
+            for (int i = 0; i < chunks.Length; i++)
             {
-                if (array[i].Split('=')[0] == "oldFileName")
+                string[] chunkSplit = chunks[i].Split('=');
+                if (chunkSplit[0] == "oldFileName")
                 {
-                    this.OldFileName = array[i].Split('=')[1];
+                    this.OldFileName = chunkSplit[1];
                 }
-                else
+                if (chunkSplit[0] == "newFileName")
                 {
-                    if (array[i].Split('=')[0] == "newFileName")
-                    {
-                        this.NewFileName = array[i].Split('=')[1];
-                    }
-                    else
-                    {
-                        if (array[i].Split('=')[0] == "fileContents")
-                        {
-                            this.FileContents = array[i].Split('=')[1];
-                        }
-                    }
+                    this.NewFileName = chunkSplit[1];
+                }
+                if (chunkSplit[0] == "fileContents")
+                {
+                    this.FileContents = chunkSplit[1];
                 }
             }
         }

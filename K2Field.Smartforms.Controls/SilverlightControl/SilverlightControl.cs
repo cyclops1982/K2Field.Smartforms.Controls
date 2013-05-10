@@ -23,7 +23,7 @@ namespace K2Field.Smartforms.Controls.SilverlightControl
     {
         public String Text { get; set; }
         private SilverlightControlExtender _extender;
-        private ClientScriptManager _cm;
+        private ClientScriptManager _clientScriptManager;
         private string _returnFromEvent;
         public SilverlightControl()
         {
@@ -42,46 +42,36 @@ namespace K2Field.Smartforms.Controls.SilverlightControl
             FileUploadEventArgs fileUploadEventArgs = new FileUploadEventArgs(eventArgument);
             string newFileName = fileUploadEventArgs.NewFileName;
             string fileContents = fileUploadEventArgs.FileContents;
+             StreamWriter streamWriter;
             if (string.IsNullOrEmpty(newFileName))
             {
                 string oldFileName = fileUploadEventArgs.OldFileName;
-                string text = oldFileName.Substring(oldFileName.IndexOf('.') + 1);
-                Guid guid = Guid.NewGuid();
-                string text2 = string.Concat(base.FilePath, "\\", guid, ".", text);
-                StreamWriter streamWriter = new StreamWriter(text2);
-                string[] array = fileContents.Split(',');
-                BinaryWriter binaryWriter = new BinaryWriter(streamWriter.BaseStream);
-                for (int i = 1; i < array.Length; i++)
-                {
-                    byte value = byte.Parse(array[i]);
-                    binaryWriter.Write(value);
-                }
-                streamWriter.Flush();
-                streamWriter.Close();
-                this._returnFromEvent = text2;
+                string oldFileExtension = oldFileName.Substring(oldFileName.IndexOf('.') + 1);
+                newFileName = string.Concat(base.FilePath, "\\", Guid.NewGuid(), ".", oldFileExtension);
+                streamWriter = new StreamWriter(newFileName);
             }
             else
             {
-                StreamWriter streamWriter = new StreamWriter(newFileName, true);
-                string[] array = fileContents.Split(',');
-                BinaryWriter binaryWriter = new BinaryWriter(streamWriter.BaseStream);
-                for (int i = 1; i < array.Length; i++)
-                {
-                    byte value = byte.Parse(array[i]);
-                    binaryWriter.Write(value);
-                }
-                streamWriter.Flush();
-                streamWriter.Close();
-                this._returnFromEvent = newFileName;
+                streamWriter = new StreamWriter(newFileName, true);
             }
+            string[] chunks = fileContents.Split(',');
+            BinaryWriter binaryWriter = new BinaryWriter(streamWriter.BaseStream);
+            for (int i = 1; i < chunks.Length; i++)
+            {
+                binaryWriter.Write(byte.Parse(chunks[i]));
+            }
+            streamWriter.Flush();
+            streamWriter.Close();
+            this._returnFromEvent = newFileName;
+
         }
 
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _cm = this.Page.ClientScript;
-            _cm.GetCallbackEventReference(this, "", "", "");
+            _clientScriptManager = this.Page.ClientScript;
+            _clientScriptManager.GetCallbackEventReference(this, "", "", "");
             EnsureChildControls();
             _extender.CallbackID = this.UniqueID;
         }
